@@ -1,15 +1,27 @@
 #!/usr/bin/lua
 
-colourPath = "/home/jorderator/.cache/wal/colors"
-rofiPath = "/home/jorderator/.config/rofi/theme.rasi"
+--[[ gets file paths needed, 
+--	colourPath: a file with the wal colour values
+--	rofiPath:   the rofi theme file
+--]]
+colourPath = os.getenv("HOME") .. "/.cache/wal/colors"
+rofiPath = os.getenv("HOME") .. "/.config/rofi/theme.rasi"
 
 colourFile = io.open(colourPath)
 
+--the colour list is used to store the colour values from the wal 'colors' file
 colours = {}
+--'line' is used where single lines need to be stored throughout the program
 line = colourFile:read()
-lines = {}
 counter = 1
 
+--[[ 
+--	this section reads in the first 10 colour values
+--	from the 'colourPath', and stores them to
+--	the 'colours' list. It only takes the first
+--	10 because beyond that wal just repeats 
+--	the values... for some reason
+--]]
 while( counter < 10 ) do
 	colours[counter] = line
 	line = colourFile:read()
@@ -17,9 +29,15 @@ while( counter < 10 ) do
 end
 
 io.close(colourFile)
+--this is used to store the lines of the rofi theme file
+lines = {}
 rofiFile = io.open(rofiPath)
 line = rofiFile:read()
 
+--[[ 
+--	this part reads the lines of the rofi theme file to the 'lines' table
+--	(io.read returns a nil value when it reaches the end of the file)
+--]]
 while( line ~= nil ) do
 	table.insert(lines, line)
 	line = rofiFile:read()
@@ -30,6 +48,12 @@ line = lines[1]
 counter = 1
 continue = true
 
+--[[
+--	I am sure there is a better way to do this, but this 
+--	essentially moves the file 'cursor' to the start of 
+--	the variable thing declaration block, using rather
+--	janky code, but yeah
+--]]
 while( continue ) do
 	if ( line == "* {" ) then
 		continue = false
@@ -39,6 +63,23 @@ while( continue ) do
 	line = lines[counter]
 end
 
+--[[
+--	this is the important bit. It reads through the lines, 
+--	starting from where the last section left it, and where
+--	the line is not blank, it breaks it down to get the name 
+--	of the attribute being set, and if it is one of the
+--	attributes that should be changed, recreates the line
+--	with the new value.
+--
+--	to configure this to your style of colour scheme, change 
+--	the attributes being checked for in the 'if' block to match
+--	your .rasi file, and change the colour values applied to
+--	each, with transparency values if needed (the colour values
+--	are in hex, so use #RRGGBBAA style).
+--
+--	I may change this to be easier to configure in the future,
+--	if I can be bothered/if anyone is interested
+--]]
 while ( line ~= "}" ) do
 	if ( line ~= "" ) then
 		local temp = line:sub(5, line:find(":") - 1)
@@ -53,8 +94,6 @@ while ( line ~= "}" ) do
 			lines[counter] = "    " .. temp .. ": " .. colours[7] .. "DD" .. ";"
 		elseif temp == "urgent" then
 			lines[counter] = "    " .. temp .. ": " .. colours[4] .. ";"
---		elseif temp == "active" then
---			lines[counter] = "    " .. temp .. ": " .. colours[
 		end
 	end
 
@@ -64,31 +103,9 @@ end
 
 rofiFile = io.open(rofiPath, "w+")
 
+-- finally, write the lines, with any changes, back to the file
 for i = 1, #lines do
 	rofiFile:write(lines[i], "\n")
 end
 
 io.close(rofiFile)
-
---[[------------------------------------------------
-
-line = rofiFile:read()
-
-while( line ~= "* {" ) do
-	line = rofiFile:read()
-end
-
-line = rofiFile:read()
-
-while ( line ~= "}" ) do
-	if ( line ~= "" ) then
-		local temp = line:sub(5, line:find(":") - 1)
-
---		temp[2] = line:gsub(" ", "")
---		temp[2] = temp[2]:sub(temp[2]:find(":") + 1, (temp[2]:len() - 1))
-
-		if temp == "foreground" then 
-	end
-
-	line = rofiFile:read()
-end]]--
