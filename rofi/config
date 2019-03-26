@@ -1,0 +1,10 @@
+rofi.modi:                           window,combi,ssh
+rofi.combi-modi:                     run,drun
+rofi.display-combi:                  run
+
+rofi.theme:                          theme.rasi
+
+rofi.kb-mode-next:                   Alt+l,Shift+Right,Control+Tab
+rofi.kb-mode-previous:               Alt+h,Shift+Left,Control+ISO_Left_Tab
+rofi.kb-row-up:                      Alt+k,Up,Control+p,ISO_Left_Tab
+rofi.kb-row-down:                    Alt+j,Down,Control+n

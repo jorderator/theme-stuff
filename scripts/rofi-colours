@@ -1,0 +1,94 @@
+#!/usr/bin/lua
+
+colourPath = "/home/jorderator/.cache/wal/colors"
+rofiPath = "/home/jorderator/.config/rofi/theme.rasi"
+
+colourFile = io.open(colourPath)
+
+colours = {}
+line = colourFile:read()
+lines = {}
+counter = 1
+
+while( counter < 10 ) do
+	colours[counter] = line
+	line = colourFile:read()
+	counter = counter + 1
+end
+
+io.close(colourFile)
+rofiFile = io.open(rofiPath)
+line = rofiFile:read()
+
+while( line ~= nil ) do
+	table.insert(lines, line)
+	line = rofiFile:read()
+end
+
+io.close(rofiFile)
+line = lines[1]
+counter = 1
+continue = true
+
+while( continue ) do
+	if ( line == "* {" ) then
+		continue = false
+	end
+
+	counter = counter + 1
+	line = lines[counter]
+end
+
+while ( line ~= "}" ) do
+	if ( line ~= "" ) then
+		local temp = line:sub(5, line:find(":") - 1)
+
+		if temp == "foreground" then 
+			lines[counter] = "    " .. temp .. ": " .. colours[8] .. ";"
+		elseif temp == "background" then
+			lines[counter] = "    " .. temp .. ": " .. colours[1] .. "CC" .. ";"
+		elseif temp == "focusfg" then
+			lines[counter] = "    " .. temp .. ": " .. colours[2] .. ";"
+		elseif temp == "focusbg" then
+			lines[counter] = "    " .. temp .. ": " .. colours[7] .. "DD" .. ";"
+		elseif temp == "urgent" then
+			lines[counter] = "    " .. temp .. ": " .. colours[4] .. ";"
+--		elseif temp == "active" then
+--			lines[counter] = "    " .. temp .. ": " .. colours[
+		end
+	end
+
+	counter = counter + 1
+	line = lines[counter]
+end
+
+rofiFile = io.open(rofiPath, "w+")
+
+for i = 1, #lines do
+	rofiFile:write(lines[i], "\n")
+end
+
+io.close(rofiFile)
+
+--[[------------------------------------------------
+
+line = rofiFile:read()
+
+while( line ~= "* {" ) do
+	line = rofiFile:read()
+end
+
+line = rofiFile:read()
+
+while ( line ~= "}" ) do
+	if ( line ~= "" ) then
+		local temp = line:sub(5, line:find(":") - 1)
+
+--		temp[2] = line:gsub(" ", "")
+--		temp[2] = temp[2]:sub(temp[2]:find(":") + 1, (temp[2]:len() - 1))
+
+		if temp == "foreground" then 
+	end
+
+	line = rofiFile:read()
+end]]--
