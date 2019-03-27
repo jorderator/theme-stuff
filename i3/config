@@ -11,6 +11,8 @@
 
 set $mod Mod4
 
+set $home "/home/jorderator"
+
 # set touchpad tapping to enabled on startup
 exec --no-startup-id xinput set-prop 10 289 1
 # set touchpad scrolling to the *right* setting
@@ -127,8 +129,7 @@ bindsym $mod+y split v
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+# change container layout (toggle, split)
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -217,8 +218,26 @@ bindsym $mod+r mode "resize"
 
 # mode for handling new screens easily
 mode "monitors" {
+	# make the brightness script for this stuff
+#	bindsym $mod+bracketleft exec xrand --output eDP-1 --brightness
+
+	bindsym $mod+Shift+h exec xrandr-handlr DP-1 left-of eDP-1
+	bindsym $mod+Shift+j exec xrandr-handlr DP-1 below eDP-1
+	bindsym $mod+Shift+k exec xrandr-handlr DP-1 above eDP-1
+	bindsym $mod+Shift+l exec xrandr-handlr DP-1 right-of eDP-1
+
+	bindsym $mod+Ctrl+h exec xrandr-handlr HDMI-1 left-of eDP-1
+	bindsym $mod+Ctrl+j exec xrandr-handlr HDMI-1 below eDP-1
+	bindsym $mod+Ctrl+k exec xrandr-handlr HDMI-1 above eDP-1
+	bindsym $mod+Ctrl+l exec xrandr-handlr HDMI-1 right-of eDP-1
 	
+        # back to normal: Escape or $mod+m
+        bindsym Escape mode "default"
+        bindsym $mod+m mode "default"
 }
+
+# enter monitors mode
+bindsym $mod+m mode "monitors"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -284,9 +303,9 @@ bindsym XF86Tools exec termite -e cmus
 
 #  screenshot bindings
 # desktop mode
-bindsym $mod+m exec --no-startup-id maim ~/Pictures/screenshots/$(date +%m-%d-%H:%M.%S).png
+bindsym $mod+s exec --no-startup-id maim ~/Pictures/screenshots/$(date +%m-%d-%H:%M.%S).png
 # selection mode
-bindsym $mod+Shift+m exec --no-startup-id maim -s ~/Pictures/screenshots/$(date +%m-%d-%H:%M.%S).png
+bindsym $mod+Shift+s exec --no-startup-id maim -s ~/Pictures/screenshots/$(date +%m-%d-%H:%M.%S).png
 
 
 #  brightness stuff
@@ -300,4 +319,4 @@ bindsym $mod+bracketleft exec --no-startup-id sudo backlight-change -2
 
 
 # emergency thing for screen, in case
-bindsym $mod+Shift+b exec --no-startup-id xrandr --ouput HDMI-1 --auto --same-as eDP-1; xrandr --ouput DP-1 --auto --same-as eDP-1
+bindsym $mod+Shift+b exec --no-startup-id bash -c "xrandr --ouput HDMI-1 --auto --same-as eDP-1 && xrandr --ouput DP-1 --auto --same-as eDP-1"
