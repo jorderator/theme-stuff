@@ -28,6 +28,9 @@ TERMINAL=termite
 export EDITOR="vim" 
 stty -ixon
 
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
+
 (cat ~/.cache/wal/sequences &)
 
 archey3 --config=~/.config/archey3.cfg
