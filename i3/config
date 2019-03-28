@@ -221,16 +221,24 @@ mode "monitors" {
 	# make the brightness script for this stuff
 #	bindsym $mod+bracketleft exec xrand --output eDP-1 --brightness
 
-	bindsym $mod+Shift+h exec xrandr-handlr DP-1 left-of eDP-1
-	bindsym $mod+Shift+j exec xrandr-handlr DP-1 below eDP-1
-	bindsym $mod+Shift+k exec xrandr-handlr DP-1 above eDP-1
-	bindsym $mod+Shift+l exec xrandr-handlr DP-1 right-of eDP-1
+	bindsym $mod+Shift+h exec --no-startup-id xrandr-handlr DP-1 left-of eDP-1
+	bindsym $mod+Shift+j exec --no-startup-id xrandr-handlr DP-1 below eDP-1
+	bindsym $mod+Shift+k exec --no-startup-id xrandr-handlr DP-1 above eDP-1
+	bindsym $mod+Shift+l exec --no-startup-id xrandr-handlr DP-1 right-of eDP-1
 
-	bindsym $mod+Ctrl+h exec xrandr-handlr HDMI-1 left-of eDP-1
-	bindsym $mod+Ctrl+j exec xrandr-handlr HDMI-1 below eDP-1
-	bindsym $mod+Ctrl+k exec xrandr-handlr HDMI-1 above eDP-1
-	bindsym $mod+Ctrl+l exec xrandr-handlr HDMI-1 right-of eDP-1
-	
+	bindsym $mod+Shift+o exec --no-startup-id xrandr-handlr DP-1 off
+
+
+	bindsym $mod+Ctrl+h exec --no-startup-id xrandr-handlr HDMI-1 left-of eDP-1
+	bindsym $mod+Ctrl+j exec --no-startup-id xrandr-handlr HDMI-1 below eDP-1
+	bindsym $mod+Ctrl+k exec --no-startup-id xrandr-handlr HDMI-1 above eDP-1
+	bindsym $mod+Ctrl+l exec --no-startup-id xrandr-handlr HDMI-1 right-of eDP-1
+
+	bindsym $mod+Ctrl+o exec --no-startup-id xrandr-handlr HDMI-1 off
+
+
+	bindsym $mod+o exec --no-startup-id xrandr-handlr all off
+
         # back to normal: Escape or $mod+m
         bindsym Escape mode "default"
         bindsym $mod+m mode "default"
