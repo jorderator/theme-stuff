@@ -218,14 +218,22 @@ bindsym $mod+r mode "resize"
 
 # mode for handling new screens easily
 mode "monitors" {
-	# make the brightness script for this stuff
-#	bindsym $mod+bracketleft exec xrand --output eDP-1 --brightness
+	bindsym $mod+bracketleft exec --no-startup-id xrandr-handlr eDP-1 brightness -0.05
+	bindsym $mod+bracketright exec --no-startup-id xrandr-handlr eDP-1 brightness +0.05
+
+	bindsym $mod+Shift+bracketleft exec --no-startup-id xrandr-handlr DP-1 brightness -0.05
+	bindsym $mod+Shift+bracketright exec --no-startup-id xrandr-handlr DP-1 brightness +0.05
+
+	bindsym $mod+Ctrl+bracketleft exec --no-startup-id xrandr-handlr HDMI-1 brightness -0.05
+	bindsym $mod+Ctrl+bracketright exec --no-startup-id xrandr-handlr HDMI-1 brightness +0.05
+
 
 	bindsym $mod+Shift+h exec --no-startup-id xrandr-handlr DP-1 left-of eDP-1
 	bindsym $mod+Shift+j exec --no-startup-id xrandr-handlr DP-1 below eDP-1
 	bindsym $mod+Shift+k exec --no-startup-id xrandr-handlr DP-1 above eDP-1
 	bindsym $mod+Shift+l exec --no-startup-id xrandr-handlr DP-1 right-of eDP-1
 
+	bindsym $mod+Shift+s exec --no-startup-id xrandr-handlr DP-1 same-as eDP-1
 	bindsym $mod+Shift+o exec --no-startup-id xrandr-handlr DP-1 off
 
 
@@ -234,9 +242,11 @@ mode "monitors" {
 	bindsym $mod+Ctrl+k exec --no-startup-id xrandr-handlr HDMI-1 above eDP-1
 	bindsym $mod+Ctrl+l exec --no-startup-id xrandr-handlr HDMI-1 right-of eDP-1
 
+	bindsym $mod+Ctrl+s exec --no-startup-id xrandr-handlr HDMI-1 same-as eDP-1
 	bindsym $mod+Ctrl+o exec --no-startup-id xrandr-handlr HDMI-1 off
 
 
+	bindsym $mod+s exec --no-startup-id xrandr-handlr all same
 	bindsym $mod+o exec --no-startup-id xrandr-handlr all off
 
         # back to normal: Escape or $mod+m
