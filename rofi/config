@@ -1,6 +1,9 @@
 rofi.modi:                           window,combi,ssh
 rofi.combi-modi:                     run,drun
 rofi.display-combi:                  run
+rofi.m:                              -4
+
+rofi.ssh-command:                    {terminal} -e 'bash -ic "read -p \"User: \" user; {ssh-client} $user@{host}"'
 
 rofi.theme:                          theme.rasi
 
