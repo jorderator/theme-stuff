@@ -1,0 +1,12 @@
+#!/bin/bash
+
+colour=0
+
+echo "Format: \033[{\$colour}m{\$colour}\033[0m "
+
+while [ $colour -lt 100 ]; do 
+	echo -en "\033[$(($colour))m$(($colour))\033[0m "
+	colour=$(($colour+1))
+done
+
+echo ""
