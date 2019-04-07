@@ -4,7 +4,7 @@ colour=0
 
 echo "Format: \033[{\$colour}m"
 
-while [ $colour -lt 100 ]; do 
+while [ $colour -lt 111 ]; do 
 	echo -en "\033[$(($colour))m$(($colour))\033[0m "
 	colour=$(($colour+1))
 done

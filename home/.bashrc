@@ -2,6 +2,8 @@
 # ~/.bashrc
 #
 
+(cat ~/.cache/wal/sequences &)
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -18,19 +20,17 @@ n()
 
 alias ls='ls --color=auto'
 alias dus='du --summarize -ch'
-alias wp='hsetroot -full'
 alias screen-lock="i3lock -efc 000000"
 alias refresh-pacman="sudo refresh-pacman"
 alias feh="feh -."
 alias pacman="pacman --color auto"
-PS1='[\u@\h \W]\$ '
-TERMINAL=termite
+
+PS1=' \[\033[1m\][\[\033[0m\]\[\033[33m\]\u@\h \[\033[31m\]\W\[\033[0m\]\[\033[1m\]]\[\033[0m\]\$ '
+export TERMINAL="termite"
 export EDITOR="vim" 
 stty -ixon
 
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
-
-(cat ~/.cache/wal/sequences &)
 
 archey3 --config=~/.config/archey3.cfg
