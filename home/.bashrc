@@ -32,5 +32,6 @@ stty -ixon
 
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
+source /usr/share/bash-completion/completions/pass
 
 archey3 --config=~/.config/archey3.cfg
