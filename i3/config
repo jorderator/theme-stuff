@@ -21,7 +21,7 @@ exec --no-startup-id xinput set-prop 10 297 1
 #exec --no-startup-id xinput set-prop 10 297 -1
 
 #maybe fix screen tearing
-exec --no-startup-id compton --config /etc/xdg/compton.conf -b
+exec --no-startup-id compton -b
 
 #set theme and stuff
 exec --no-startup-id wal -R -n
@@ -320,10 +320,12 @@ bindsym XF86Tools exec termite -e cmus
 
 
 #  screenshot bindings
-# desktop mode
-bindsym $mod+s exec --no-startup-id maim ~/Pictures/screenshots/$(date +%m-%d-%H:%M.%S).png
+# selection to clipboard mode
+bindsym $mod+s exec --no-startup-id maim -s | xclip -sel c -i -t image/png
 # selection mode
 bindsym $mod+Shift+s exec --no-startup-id maim -s ~/Pictures/screenshots/$(date +%m-%d-%H:%M.%S).png
+# desktop mode
+bindsym $mod+Ctrl+s exec --no-startup-id maim ~/Pictures/screenshots/$(date +%m-%d-%H:%M.%S).png
 
 
 #  brightness stuff
