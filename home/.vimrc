@@ -34,6 +34,7 @@ call plug#end()
 
 nmap <C-f> :Buffers<CR>
 nmap <C-p> :Files<CR>
+inoremap <A-Space> <Esc>
 vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
 
 set number
