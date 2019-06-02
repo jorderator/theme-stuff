@@ -29,12 +29,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'w0rp/ale'
 Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 call plug#end()
 
 nmap <C-f> :Buffers<CR>
 nmap <C-p> :Files<CR>
-inoremap <A-Space> <Esc>
 vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
 
 set number
