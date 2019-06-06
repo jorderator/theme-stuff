@@ -17,13 +17,15 @@ runtime! archlinux.vim
 " do not load defaults if ~/.vimrc is missing
 "let skip_defaults_vim=1
 
+
+" Download and install vim-plug if it is not already installed
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-
+" Plugin list:
 call plug#begin('~/.vim/plugged')
 
 Plug 'w0rp/ale'
@@ -37,24 +39,41 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 call plug#end()
 
 
+" Key mappings:
 nmap <C-f> :Buffers<CR>
 nmap <C-p> :Files<CR>
 vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
 
 
-set number
+" Status line stuff:
 set laststatus=2
 
-" use {:so $VIMRUNTIME/syntax/hitest.vim} to get colour list
+"  get the current amount of uncommited changes to the file, if in a git
+"  repository
+function! GitChanges()
+	let l:diffOut = system("git diff --numstat " . @%)
+	if diffOut || diffOut[0] == "0"
+		let l:diffList = split(diffOut)
+		let l:diffAmount = diffList[0] + diffList[1]
+		return diffAmount? " | " . diffAmount : ""
+	else
+		return ""
+	endif
+endfunction
+
+"  use {:so $VIMRUNTIME/syntax/hitest.vim} to get colour list
 set statusline=%#DiffAdd#
 set statusline+=\ %f
 set statusline+=\ %r%m
 set statusline+=\ %#ErrorMsg#%=
 set statusline+=\ %p%%
-set statusline+=\ %l\-%L
+set statusline+=\ \|\ %l\-%L
+set statusline+=%{GitChanges()}
 set statusline+=\ 
 
 
+" Other visual stuff:
+set number
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
