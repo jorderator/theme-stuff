@@ -36,11 +36,24 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 
 call plug#end()
 
+
 nmap <C-f> :Buffers<CR>
 nmap <C-p> :Files<CR>
 vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
 
+
 set number
+set laststatus=2
+
+" use {:so $VIMRUNTIME/syntax/hitest.vim} to get colour list
+set statusline=%#DiffAdd#
+set statusline+=\ %f
+set statusline+=\ %r%m
+set statusline+=\ %#ErrorMsg#%=
+set statusline+=\ %p%%
+set statusline+=\ %l\-%L
+set statusline+=\ 
+
 
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
