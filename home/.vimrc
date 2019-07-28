@@ -42,6 +42,7 @@ call plug#end()
 " Key mappings:
 nmap <C-f> :Buffers<CR>
 nmap <C-p> :Files<CR>
+nmap <C-t> :TableFormat<CR>
 vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
 
 
