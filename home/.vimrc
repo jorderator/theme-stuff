@@ -69,7 +69,7 @@ set statusline+=\ %r%m
 set statusline+=\ %#ErrorMsg#%=
 set statusline+=\ %p%%
 set statusline+=\ \|\ %l\-%L
-set statusline+=%{GitChanges()}
+"set statusline+=%{GitChanges()}
 set statusline+=\ 
 
 
