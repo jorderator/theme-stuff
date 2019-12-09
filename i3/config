@@ -21,7 +21,7 @@ exec --no-startup-id xinput set-prop 10 297 1
 #exec --no-startup-id xinput set-prop 10 297 -1
 
 #maybe fix screen tearing
-exec --no-startup-id compton -b
+exec --no-startup-id picom -b
 
 #set theme and stuff
 exec --no-startup-id wal -R -n
