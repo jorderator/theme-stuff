@@ -31,6 +31,7 @@ alias usb-mount="sudo mount -o uid=1000,gid=1000,dmask=022,fmask=133,exec"
 PS1=' \[\033[1m\][\[\033[0m\]\[\033[33m\]\u@\h \[\033[31m\]\W\[\033[0m\]\[\033[1m\]]\[\033[0m\]\$ '
 export TERMINAL="termite"
 export EDITOR="vim" 
+eval "$(luarocks path)"
 stty -ixon
 
 source /usr/share/fzf/key-bindings.bash
