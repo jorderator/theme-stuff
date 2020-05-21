@@ -43,8 +43,10 @@ call plug#end()
 nmap <C-f> :Buffers<CR>
 nmap <C-p> :Files<CR>
 nmap <C-t> :TableFormat<CR>
+nmap <C-s> :set hlsearch!<CR>
 vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
 
+set foldmethod=marker
 
 " Status line stuff:
 set laststatus=2
