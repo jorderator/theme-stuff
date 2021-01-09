@@ -233,8 +233,10 @@ bindsym $mod+m mode "monitors"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+	font pango:monospace, Font Awesome 5 Free 8
 	i3bar_command i3bar -t
-        status_command i3status
+        status_command i3status-rs $home/.config/status.toml
+        #status_command i3status
 	colors {
 		background $bgCC
 

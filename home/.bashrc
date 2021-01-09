@@ -33,6 +33,7 @@ PS1=' \[\033[1m\][\[\033[0m\]\[\033[33m\]\u@\h \[\033[31m\]\W\[\033[0m\]\[\033[1
 export TERMINAL="termite"
 export EDITOR="vim" 
 eval "$(luarocks path)"
+export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 stty -ixon
 
 source /usr/share/fzf/key-bindings.bash

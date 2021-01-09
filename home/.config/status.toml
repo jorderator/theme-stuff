@@ -1,0 +1,88 @@
+[theme]
+name = "solarized-dark"
+#file = "/home/jorderator/.config/status-theme.toml"
+[theme.overrides]
+idle_bg = "#1e161bCC"
+idle_fg = "#efe3cb"
+info_bg = "#a79e8eDD"
+info_fg = "#1e161b"
+good_bg = "#DBAF97DD"
+good_fg = "#1e161b"
+warning_bg = "#CFC66EDD"
+warning_fg = "#1e161b"
+critical_bg = "#dc322fDD"
+critical_fg = "#1e161b"
+separator = "|"
+separator_bg = "#1e161bCC"
+separator_fg = "#DBAF97"
+alternating_tint_bg = "#00000000"
+alternating_tint_fg = "#00000000"
+
+[icons]
+name = "awesome5"
+[icons.overrides]
+pomodoro = "  "
+
+
+# move to using this, and in python script
+#[[block]]
+#block = "custom_dbus"
+#name = "TestBlock"
+
+[[block]]
+block = "custom"
+command = "cat /tmp/notif.txt | grep text"
+json = true
+interval = 1
+on_click = "rm /tmp/alerting_active"
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 20
+warning = 20.0
+alert = 10.0
+
+[[block]]
+block = "net"
+device = "wlp3s0"
+interval = 1
+#format = "{graph_up} {speed_up} - {graph_down} {speed_down} on {ssid} ({signal_strength}) - {ip}"
+signal_strength = true
+ssid = true
+ip = true
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+#[[block]]
+#block = "cpu"
+#interval = 1
+
+[[block]]
+block = "sound"
+step_width = 2
+show_volume_when_muted = true
+
+[[block]]
+block = "battery"
+driver = "upower"
+device = "DisplayDevice"
+interval = 5
+format = "{percentage}% {time}"
+
+[[block]]
+block = "load"
+interval = 1
+format = "{1m}"
+
+[[block]]
+block = "time"
+interval = 1
+format = "%a %b (%m) %d %Y %H/%l:%M:%S"
