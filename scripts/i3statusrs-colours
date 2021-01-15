@@ -1,0 +1,51 @@
+#!/usr/bin/python
+
+import os, re
+
+colourPath = os.environ['HOME'] + "/.cache/wal/colors"
+themePath = os.environ['HOME'] + "/.config/status-theme.toml" 
+
+colourFile = open(colourPath)
+
+
+colours = []
+for i in range(9):
+    colours.append(colourFile.readline()[:-1])
+
+colourFile.close()
+
+
+lines = []
+themeFile = open(themePath)
+
+for line in themeFile:
+    lines.append(line[:-1])
+
+themeFile.close()
+
+
+for i in range(len(lines)):
+    line = lines[i]
+    if line != "" and line[0] != "#":
+        matches = re.search(r'([a-z_]+) = "?([#\w]*)"?', line)
+
+        name = matches.group(1)
+        if name == "idle_bg" or name == "info_fg" or name == "good_fg" or name == "warning_fg" or name == "critical_fg" or name == "separator_bg":
+            lines[i] = name + " = \"" + colours[0] + ("CC\"" if name[-2:] == "bg" else "\"")
+        elif name == "idle_fg":
+            lines[i] = name + " = \"" + colours[7] + "\""
+        elif name == "info_bg":
+            lines[i] = name + " = \"" + colours[8] + "DD\""
+        elif name == "good_bg":
+            lines[i] = name + " = \"" + colours[6] + "DD\""
+        elif name == "warning_bg":
+            lines[i] = name + " = \"" + colours[7] + "DD\""
+        elif name == "separator_fg":
+            lines[i] = name + " = \"" + colours[6] + "\""
+
+themeFile = open(themePath, "w")
+
+for line in lines:
+    themeFile.write(line + "\n")
+
+themeFile.close()
