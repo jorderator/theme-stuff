@@ -1,7 +1,11 @@
 #!/bin/bash
 
-value=$(cat /sys/class/backlight/intel_backlight/brightness)
-if [[ $(($value + $1)) -gt 0 && $(($value + $1)) -lt 188 ]]; then
-	value=$(($value + $1))
+path="/sys/class/backlight/intel_backlight"
+value=$(cat $path/brightness)
+max=$(cat $path/max_brightness)
+increment=$(calc -dp "round($max / 100 * $1, 0)")
+
+if [[ $(($value + $increment)) -gt 0 && $(($value + $increment)) -lt $max ]]; then
+	value=$(($value + $increment))
 fi
-echo -n $value > /sys/class/backlight/intel_backlight/brightness
+echo -n $value > $path/brightness

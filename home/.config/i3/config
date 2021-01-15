@@ -305,12 +305,16 @@ bindsym $mod+Ctrl+s exec --no-startup-id maim ~/Pictures/screenshots/$(date +%m-
 
 #  brightness stuff for laptop
 # increase brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id sudo backlight-change +2 
-bindsym $mod+bracketright exec --no-startup-id sudo backlight-change +2
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo backlight-change +3
+bindsym $mod+bracketright exec --no-startup-id sudo backlight-change +3
 
 # decrease brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo backlight-change -2
-bindsym $mod+bracketleft exec --no-startup-id sudo backlight-change -2
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo backlight-change -3
+bindsym $mod+bracketleft exec --no-startup-id sudo backlight-change -3
+
+
+#  put laptop to sleep
+bindsym XF86Display exec --no-startup-id systemctl suspend
 
 
 # emergency thing for laptop screen, in case main screen fails

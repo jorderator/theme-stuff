@@ -1,22 +1,6 @@
 [theme]
-name = "solarized-dark"
-#file = "/home/jorderator/.config/status-theme.toml"
-[theme.overrides]
-idle_bg = "#1e161bCC"
-idle_fg = "#efe3cb"
-info_bg = "#a79e8eDD"
-info_fg = "#1e161b"
-good_bg = "#DBAF97DD"
-good_fg = "#1e161b"
-warning_bg = "#CFC66EDD"
-warning_fg = "#1e161b"
-critical_bg = "#dc322fDD"
-critical_fg = "#1e161b"
-separator = "|"
-separator_bg = "#1e161bCC"
-separator_fg = "#DBAF97"
-alternating_tint_bg = "#00000000"
-alternating_tint_fg = "#00000000"
+file = "/home/jorderator/.config/status-theme.toml"
+#name = "solarized-dark"
 
 [icons]
 name = "awesome5"
