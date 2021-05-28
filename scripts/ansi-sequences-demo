@@ -2,7 +2,7 @@
 
 colour=0
 
-echo "Format: \033[{\$colour}m"
+echo "Format: \e[{\$colour}m"
 
 while [ $colour -lt 111 ]; do 
 	echo -en "\033[$(($colour))m$(($colour))\033[0m "

@@ -5,4 +5,4 @@ cp /etc/pacman.d/mirrorlist /etc/pacman.d/backups/mirrorlist-backup-$(date +'%m%
 pacman -Sy
 #reflector -c australia --sort rate > /etc/pacman.d/mirrorlist
 #reflector --score 15 --sort rate >> /etc/pacman.d/mirrorlist
-reflector -c australia --sort rate --protocol https --download-timeout 10 --connection-timeout 10 --save /etc/pacman.d/mirrorlist
+reflector -c australia --sort rate --protocol https --download-timeout 30 --connection-timeout 30 --save /etc/pacman.d/mirrorlist
