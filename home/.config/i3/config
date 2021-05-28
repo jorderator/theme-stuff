@@ -298,7 +298,7 @@ bindsym XF86Tools exec termite -e cmus
 # selection to clipboard mode
 bindsym $mod+s exec --no-startup-id maim -su | xclip -sel c -i -t image/png
 # selection mode
-bindsym $mod+Shift+s exec --no-startup-id maim -su ~/Pictures/screenshots/$(date +%m-%d-%H:%M.%S).png
+bindsym $mod+Shift+s exec --no-startup-id maim -sd 2 --quiet | xclip -sel c -i -t image/png
 # desktop mode
 bindsym $mod+Ctrl+s exec --no-startup-id maim ~/Pictures/screenshots/$(date +%m-%d-%H:%M.%S).png
 

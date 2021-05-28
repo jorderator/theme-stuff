@@ -1,7 +1,27 @@
 #!/bin/bash
 
-feh -. --bg-fill "$@"
-wal -ni "$@"
+first=false
+pictures=()
+
+for var in "$@"; do
+	if [[ "$var" = "-f" ]] || [[ "$var" = "--first" ]]; then
+		first=true
+	else
+		pictures+=("$var")
+	fi
+done
+
+if [[ ${#pictures[@]} -eq 2 ]] && [[ "$first" = false ]]; then
+	feh -. --bg-fill "${pictures[0]}" "${pictures[1]}"
+	wal -ni "${pictures[1]}"
+elif [[ ${#pictures[@]} -eq 2 ]] && [[ "$first" = true ]]; then
+	feh -. --bg-fill "${pictures[0]}" "${pictures[1]}"
+	wal -ni "${pictures[0]}"
+elif [ ${#pictures[@]} -eq 1 ]; then
+	feh -. --bg-fill "$@"
+	wal -ni "$@"
+fi
+
 rofi-colours
 i3statusrs-colours
 i3-msg restart

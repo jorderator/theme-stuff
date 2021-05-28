@@ -39,10 +39,10 @@ default_display = Notif(None, "-")
 active_notif_list = []
 notif_list = [
         # see my i3status-rust status.toml for what icon is what, as I am overriding unused ones for my purposes
-        Notif(time(22, 30), "Take tablets!", "Critical", "pomodoro", True),
         Notif(time(13, 30), "Have lunch, take tablets", "Warning", "pomodoro", True),
-        Notif(time(23, 00), "Do teeeth", "Warning", " "),
-        Notif(time(23, 30), "no seriously, do teeth", "Warning", " ", True),
+        Notif(time(21, 30), "Take tablets!", "Critical", "pomodoro", True),
+        Notif(time(22, 00), "Do teeeth", "Warning", " "),
+        Notif(time(22, 30), "no seriously, do teeth", "Warning", " ", True),
         #Notif(datetime.now(), "testing thingy", "Warning", " ", True),
 ]
 
