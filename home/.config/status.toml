@@ -1,6 +1,5 @@
 [theme]
 file = "/home/jorderator/.config/status-theme.toml"
-#name = "solarized-dark"
 
 [icons]
 name = "awesome5"
@@ -23,27 +22,25 @@ on_click = "rm /tmp/alerting_active"
 [[block]]
 block = "disk_space"
 path = "/"
-alias = "/"
 info_type = "available"
 unit = "GB"
+format = "{path} {available}"
 interval = 20
 warning = 20.0
 alert = 10.0
 
 [[block]]
 block = "net"
-device = "wlp3s0"
+device = "wlan0"
 interval = 1
 #format = "{graph_up} {speed_up} - {graph_down} {speed_down} on {ssid} ({signal_strength}) - {ip}"
-signal_strength = true
-ssid = true
-ip = true
+format = "{ssid} {signal_strength} {ip} {speed_up;K} {speed_down;K}"
 
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
+format_mem = "{mem_used_percents}"
+format_swap = "{swap_used_percents}"
 
 #[[block]]
 #block = "cpu"
@@ -59,7 +56,7 @@ block = "battery"
 driver = "upower"
 device = "DisplayDevice"
 interval = 5
-format = "{percentage}% {time}"
+format = "{percentage} {time}"
 
 [[block]]
 block = "load"

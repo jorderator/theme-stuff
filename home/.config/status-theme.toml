@@ -1,5 +1,11 @@
 #fix for 0.14.3 - https://github.com/greshake/i3status-rust/issues/965
-native_separators = true
+#native_separators = true
+# ok so for some reason this doesn't work anymore.
+# I found this in reference to it: https://github.com/greshake/i3status-rust/issues/1054
+# and apparently this was fixed, but then broken again somehow, likely in one of
+# these commits: 26bd46e or 557aa73
+# keep an eye on this, and maybe fix it one day if possible, because no separator on
+# the end is kind of nice
 
 idle_bg = "#1d2635CC"
 idle_fg = "#e1ebee"
