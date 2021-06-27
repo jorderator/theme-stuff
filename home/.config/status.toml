@@ -8,16 +8,17 @@ pomodoro = "  "
 
 
 # move to using this, and in python script
-#[[block]]
-#block = "custom_dbus"
-#name = "TestBlock"
-
 [[block]]
-block = "custom"
-command = "cat /tmp/notif.txt | grep text"
-json = true
-interval = 1
+block = "custom_dbus"
+name = "NotifBlock"
 on_click = "rm /tmp/alerting_active"
+
+#[[block]]
+#block = "custom"
+#command = "cat /tmp/notif.txt | grep text"
+#json = true
+#interval = 1
+#on_click = "rm /tmp/alerting_active"
 
 [[block]]
 block = "disk_space"

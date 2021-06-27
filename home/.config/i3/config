@@ -9,6 +9,9 @@ set $home "/home/jorderator"
 # start compositor
 exec --no-startup-id picom -b
 
+# start status bar notification script
+exec --no-startup-id status-notifier.py
+
 # set theme colours
 exec --no-startup-id wal -R -n
 # then set wallpaper
@@ -297,7 +300,7 @@ bindsym XF86Tools exec termite -e cmus
 #  screenshot bindings
 # selection to clipboard mode
 bindsym $mod+s exec --no-startup-id maim -su | xclip -sel c -i -t image/png
-# selection mode
+# delayed selection to clipboard mode
 bindsym $mod+Shift+s exec --no-startup-id maim -sd 2 --quiet | xclip -sel c -i -t image/png
 # desktop mode
 bindsym $mod+Ctrl+s exec --no-startup-id maim ~/Pictures/screenshots/$(date +%m-%d-%H:%M.%S).png

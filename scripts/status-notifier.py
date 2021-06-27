@@ -19,6 +19,14 @@ class Notif(object):
         self.flashing = flashing
         self.flash_toggle = False
 
+    def get_dbus_format(self):
+        output = '"%s" "%s" "%s"'%(self.text, self.icon, ("Info" if self.flash_toggle else self.state))
+
+        if self.flashing:
+            self.flash_toggle = not self.flash_toggle
+
+        return output
+
     def get_json(self):
         output = '{"text": "%s", "icon": "%s", "state": "%s"}'%(self.text, self.icon, ("Info" if self.flash_toggle else self.state))
 
@@ -54,16 +62,19 @@ def create_active_file():
     open(active_file_path, "w").close()
     #os.chmod(active_file_path, 0o777)
 
-notif_file_path = directory + "notif.txt"
+#notif_file_path = directory + "notif.txt"
 
-def write_notif_file(content):
-    notif_file = open(notif_file_path, "w")
-    notif_file.write(content)
-    notif_file.close()
+#def write_notif_file(content):
+#    notif_file = open(notif_file_path, "w")
+#    notif_file.write(content)
+#    notif_file.close()
 
 #open(active_file_path, "w").close()
-write_notif_file(default_display.get_json())
+#write_notif_file(default_display.get_json())
 
+def write_status(content):
+    #os.system("qdbus i3.status.rs /TestBlock")
+    os.system("qdbus i3.status.rs /NotifBlock i3.status.rs.SetStatus " + content)
 
 
 try:
@@ -82,14 +93,15 @@ try:
             create_active_file()
         elif (not os.path.isfile(active_file_path)) and len(active_notif_list) == 1:
             active_notif_list.pop(0)
-            write_notif_file(default_display.get_json())
 
         if os.path.isfile(active_file_path):
-            write_notif_file(active_notif_list[0].get_json())
+            write_status(active_notif_list[0].get_dbus_format())
+        else:
+            write_status(default_display.get_dbus_format())
 
         sleep(1)
 
 except Exception as ex:
     print("Error: " + ex.strerror)
     os.remove(active_file_path)
-    write_notif_file(default_display.get_json())
+    write_status(default_display.get_dbus_format())
