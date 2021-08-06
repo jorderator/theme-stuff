@@ -36,7 +36,7 @@ alias gotop="gotop -ps"
 # Setting variables, first for prompt, then functionality
 PS1=' \[\e[1m\][\[\e[0m\]\[\e[33m\]\u@\h \[\e[31m\]\W\[\e[0m\]\[\e[1m\]]\[\e[0m\]\$ '
 #PS1=' \[\033[1m\][\[\033[0m\]\[\033[33m\]\u@\h \[\033[31m\]\W\[\033[0m\]\[\033[1m\]]\[\033[0m\]\$ '
-export TERMINAL="termite"
+export TERMINAL="alacritty"
 export EDITOR="vim" 
 eval "$(luarocks path)"
 export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
