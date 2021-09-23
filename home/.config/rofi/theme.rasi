@@ -3,12 +3,12 @@
  * Rofi version: 1.5.2
  **/
 * {
-    foreground: #efe3cb;
-    background: #1e161bCC;
-    focusfg: #A98F60;
-    focusbg: #DBAF97DD;
+    text-color: #dbd4c5;
+    background: #0B0E04CC;
+    focusfg: #97642B;
+    focusbg: #7E8484DD;
     background-color:            rgba ( 0, 0, 0, 0 % );
-    urgent: #CFC66E;
+    urgent: #758B05;
     active:                      rgba ( 38, 139, 210, 100 % );
 
     spacing:                     5;

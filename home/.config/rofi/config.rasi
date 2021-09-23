@@ -1,0 +1,16 @@
+
+configuration {
+	modi:			"window,combi,ssh";
+	combi-modi:		"run,drun";
+        display-combi:		"run";
+        m:                      "-4";
+
+	ssh-command:		"{terminal} -e bash -ic \"read -p \"User: \" user; {ssh-client} ssh://$user@{host}\"";
+
+	kb-mode-next:		"Alt+l,Shift+Right,Control+Tab";
+	kb-mode-previous:       "Alt+h,Shift+Left,Control+ISO_Left_Tab";
+        kb-row-up:              "Alt+k,Up,Control+p,ISO_Left_Tab";
+        kb-row-down:            "Alt+j,Down,Control+n";
+}
+
+@theme "theme.rasi"

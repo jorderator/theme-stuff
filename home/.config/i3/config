@@ -65,7 +65,8 @@ bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Shift+q kill
 
 # rofi quick run
-bindsym $mod+d exec --no-startup-id rofi -show combi -location 1 -width 100 -lines 2 -columns 4 -seperator-style none -bw 0
+bindsym $mod+d exec --no-startup-id rofi -show combi --location 1 --width "100%" --lines 2 --columns 4 --seperator-style none --bw 0
+#bindsym $mod+d exec --no-startup-id rofi -theme-str "configuration { location: 1; } window { width: 100%; } listview { lines: 2; columns: 4; }" -show combi 
 
 # rofi proper menu thing
 bindsym $mod+Shift+d exec --no-startup-id rofi -sidebar-mode true -show combi
