@@ -11,6 +11,7 @@ pomodoro = "  "
 [[block]]
 block = "custom_dbus"
 name = "NotifBlock"
+initial_text = " - "
 on_click = "rm /tmp/alerting_active"
 
 #[[block]]
